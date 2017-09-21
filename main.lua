@@ -12,7 +12,12 @@ background.y = display.contentCenterY
 
 local music = audio.loadSound( "Super Mario Bros. Music - Ground Theme.mp3" )
 audio.play ( music )
-
+audio.play ( music )
+audio.play ( music )
+audio.play ( music )
+audio.play ( music )
+audio.play ( music )
+audio.play ( music )
 
 local tapText = display.newText( tapCount, display.contentCenterX, 20, native.systemFont, 40 )
 tapText:setFillColor(0.9,0.26,0.96)
@@ -39,6 +44,16 @@ physics.addBody( platform1, "static" )
 
 local function pushBalloon()
     balloon:applyLinearImpulse( 0, -0.75, balloon.x, balloon.y )
+    tapCount = tapCount +1
+    tapText.text = tapCount
 end
 
 balloon:addEventListener( "tap", pushBalloon )
+
+local function reset()
+  tapCount = 0
+  tapText.text = tapCount
+  
+end
+
+balloon:addEventListener( "collision", reset )
